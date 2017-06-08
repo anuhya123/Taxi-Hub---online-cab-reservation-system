@@ -2,7 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,23 +9,23 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="basic.css">
+  <link rel="stylesheet" href="pro.css">
 </head>
 
 <body>
 <table border="0" cellpadding="0" cellspacing="3">
 <tr>
     <td colspan="2">
-        <input id="origin-input" class="controls" type="text" name ="source"
+        <input id="origin-input" class="controls" type="text"
         placeholder="Enter an origin location">
         
-        <input id="destination-input" class="controls" type="text" name ="destination"
+        <input id="destination-input" class="controls" type="text"
         placeholder="Enter a destination location">
 		
 		<input type="button" value="Get Route" class="btn btn-info btn-lg" onclick="GetRoute()">
-        <form method="post" action="BookingController">
-	    <input type="button" value="Confirm" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"  onclick="">
-        </form>
+        
+	    <input type="button" value="Proceed" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" onclick="">
+        
 		 <!-- Modal -->
            <div class="modal fade" id="myModal" role="dialog">
              <div class="modal-dialog">
@@ -39,15 +38,11 @@
         </div>
         <div class="modal-body">
           <h3>Your ride has been confirmed.</h3>
-          <h4><%=session.getAttribute("drivername")%> </h4>
-          <h4 ><%=session.getAttribute("phone")%></h4>
-          <h4><%=session.getAttribute("cabnum")%></h4>
-          <h4><%=session.getAttribute("cabname")%></h4>
           <h4>The driver should be arriving in 5-10 minutes. </h4>
           <h5>Thank you for using our services. Do visit us again!!</h5>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" method = "post "action = "UserBookings" data-dismiss="modal">OK</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Confirm</button>
         </div>
       </div>
       
@@ -131,14 +126,15 @@ function GetRoute() {
             var duration = response.rows[0].elements[0].duration.text;
 			//alert(distance);
 			//alert(duration);
-			var rideEstimate = 6 * parseInt(distance);
-			var dvDistance = document.getElementById("dvDistance");
+			var rideEstimate = 8 * parseInt(distance) + 50;
+			//alertrt(6 * parseInt(distance));
+            var dvDistance = document.getElementById("dvDistance");
 			
            dvDistance.innerHTML = "";
             dvDistance.innerHTML += "Distance: " + distance + "<br />";
             dvDistance.innerHTML += "Duration:"+ duration + "<br/>";
-			dvDistance.innerHTML += "Total fare is:"+ rideEstimate + "<br/>";
-			
+			dvDistance.innerHTML += "Ride estimate:Rs." + rideEstimate;
+ 
         } else {
             alert("Unable to find the distance via road.");
         }
