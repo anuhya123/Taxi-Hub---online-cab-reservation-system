@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="register_style.css">
+</head>
+<body>
+
+<div id="login-overlay" class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+<h4 class="modal-title" id="myModalLabel">Register here</h4>
+</div>
+<div class="modal-body">
+<div class="row">
+<div class="col-xs-6">
+<div class="well">
+<form id="loginForm" method="POST" action="Registration">
+<div class="form-group">
+<label for="username" class="control-label">Name</label>
+<input type="text" class="form-control" id="username" name="username" required title="Please enter you username" placeholder="Enter the name">
+<span class="help-block"></span>
+</div>
+<div class="form-group">
+<label for="username" class="control-label">Phone Number </label>
+<input type="text" class="form-control" id="username" name="number" required maxlength="10"title="Please enter you Phone Number" placeholder="Enter the phone number">
+<span class="help-block"></span>
+</div>
+<div class="form-group">
+<label for="password" class="control-label">Password</label>
+<input type="password" class="form-control" id="password" name="password" pattern=".{8,}" required title="Min 8 characters required" placeholder = "(min 8 characters)">
+<span class="help-block"></span>
+</div>
+<div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
+<div class="g-recaptcha" data-theme = "dark" data-sitekey="6LeO2yMUAAAAANU517iNLQEZUtxQpRPWw5wD1N0z" required title="Are you a robot?" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
+<input type="submit" value="REGISTER">
+</form>
+</div>
+</div>
+<div class="col-xs-6">
+<p class="lead"><h2>Additional Features </h2></p>
+<ul class="list-unstyled" style="line-height: 6">
+<li><span class="fa fa-check text-success"></span><h4> Monthly Pooling</h4> </li>
+
+
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+
+
+</html>

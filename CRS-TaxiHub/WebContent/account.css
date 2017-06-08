@@ -1,0 +1,58 @@
+@CHARSET "ISO-8859-1";
+body {
+    background-image: url(12.jpg);
+	background-repeat: no-repeat;
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+h1 {
+    font-size: 4.5em;
+	font-family:  "Times New Roman", Times, serif;
+	
+}
+
+.margin {margin-bottom: 45px;}
+
+.container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;
+  }
+  
+.bg-2 { 
+    background-color: #000000; /* Dark Blue */
+    color: #ffffff;
+}
+
+p {
+   font-size: 16px;
+}
+
+#divright{
+	float: right;
+	height: 100%;
+	width: 50%;
+	background-color: rgb(130, 147, 175);
+}
+
+.container-header {
+    background-color: black;
+    color:white !important;
+    text-align: center;
+    font-size: 30px;
+}
+
+.footer {
+      background-color: #f9f9f9;
+}
+
+.container{
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+  align-content: center;
+  padding-right: 0px;
+  padding-left: 0px;
+}
