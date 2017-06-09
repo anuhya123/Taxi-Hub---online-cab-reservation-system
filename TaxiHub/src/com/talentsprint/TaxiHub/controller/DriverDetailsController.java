@@ -35,10 +35,17 @@ public class DriverDetailsController extends HttpServlet {
 		
 		DriverEmailDAO dedao = new DriverEmailDAO();
 		try {
-			String email = dedao.getDriverEmailBasic(status);
-			HttpSession session = request.getSession();
-			session.setAttribute("email", email);
-			//response.sendRedirect("basic.jsp");
+			//String email = dedao.getDriverEmailBasic(status);
+			String driver = dedao.retrieveCabDriver(status);
+			String phone = dedao.retrieveDriverPhone(status);
+			String cabNumber = dedao.retrieveCabNumber(status);
+			//String cabName = dedao.retrieveCabName(status);
+			//System.out.println(email);
+			//request.setAttribute("email", email);
+			request.setAttribute("driver", driver);
+			request.setAttribute("phone", phone);
+			request.setAttribute("cabNumber", cabNumber);
+			//request.setAttribute("cabName", cabName);
 			RequestDispatcher rd = request.getRequestDispatcher("basic.jsp");
 		    rd.forward(request, response);
 		} catch (SQLException e) {
