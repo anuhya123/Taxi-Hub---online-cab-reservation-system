@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Driver_Signin</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+body h2,h4,h4,h5 {
+    font-family: "Raleway", sans-serif
+	}
+	
+.h1 {
+    font-size: 1.5em;
+	font-family:  "Times New Roman", Times, serif;
+	}
+</style>
+</head>
+<body class="w3-light-grey">
+
+<!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1400px">
+
+<!-- Header -->
+<header class="w3-container w3-center w3-padding-16"> 
+  <h1><b>Taxi Hub</b></h1>
+  <p>At your Doorstep</p>
+</header>
+
+<!-- Grid -->
+<div class="w3-row">
+
+<!-- Blog entries -->
+<div class="w3-col l8 s12">
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="16.png" alt="Nature" style="width:100%">
+    <div class="w3-container">
+      <h2><b>*Conditions Applied</b></h2>
+    </div>
+
+    <div class="w3-container">
+      <h4>1.First of all you should have a used or brand new car to be attached with Taxi Hub as commercial use but in a good condition.</h4>
+	  <h4>2.We only hire drivers who have commercial license and all the necessary documents. If you wish to drive all by yourself, then we have no issues.</h4>
+      <h4>3.You have to contact to your nearest regional office or you can directly call to the main branch for new registration of your car.</h4>
+      <h4>4.It is a must to submit all the required documents to the company.</h4>
+      <h4>5.The company will see your car's condition in the nearest regional office.</h4>
+      <h4>6.Get a smart phone which gives access to TaxiHub and <b>email</b>.</h4>
+      <h4>7.Staff will keep you updated about the guidelines and offers.</h4>
+      <h4>9.Now you are ready and you can drive the customers off to their destination safe and sound.</h4>
+	
+        <div class="w3-col m8 s10">
+          </div>
+        </div>
+    </div>
+  </div>
+  <hr>
+
+  <!-- Introduction menu -->
+<div class="w3-col l4">
+  <!-- About Card -->
+  <div class="w3-card-2 w3-margin w3-margin-top">
+    <div class="w3-container w3-white">
+      <h4><b>Register</b></h4>
+      <div class="modal-body">
+         <div class="row">
+         <div class="col-xs-12">
+    	 <div class="well">
+          
+		  <form id="loginForm" method="POST" action="DriverRegister">
+            <div class="form-group">
+            <label for="username" class="control-label">Name</label>
+            <input type="text" class="form-control" id="username" name="username" required title="Please enter you username" placeholder="Enter the name">
+            <span class="help-block"></span>
+            </div>
+			
+			<div class="form-group">
+			<label for="username" class="control-label">Phone Number </label>
+			<input type="text" class="form-control" id="username" name="number" required maxlength="10"title="Please enter you Phone Number" placeholder="Enter the phone number">
+			<span class="help-block"></span>
+			</div>
+			
+			<div class="form-group">
+			<label for="username" class="control-label">Registration_Number </label>
+			<input type="text" class="form-control" id="username" name="vehiclenum" required maxlength="10"title="Please enter you Phone Number" placeholder="Enter the phone number">
+			<span class="help-block"></span>
+			</div>
+            
+
+            <div class="form-group">
+			<label for="password" class="control-label">Password</label>
+			<input type="password" class="form-control" id="password" name="password" pattern=".{8,}" required title="Please enter your password" placeholder = "(min 8 characters)">
+			<span class="help-block"></span>
+			</div>
+			
+			<div class="form-group">
+			<label for="password" class="control-label">Vechile Name</label>
+			<input type="text" class="form-control" id="password" name="vname" required  title="Please enter your password" placeholder = "(min 8 characters)">
+			<span class="help-block"></span>
+			</div>
+			
+            			
+			 <div class="form-group">
+			<label for="username" class="control-label">Cost/km</label>
+			<input type="text" class="form-control" id="username" name="cabPackage" required title="Please enter you Phone Number" placeholder="Enter the phone number">
+			<span class="help-block"></span>
+			</div>
+			
+			<label class="radio-inline">
+            <input type="radio" name="available"> Availabale
+            </label>
+          
+		    <label class="radio-inline">
+            <input type="radio" name="unavailable"> Unavailabale
+            </label>
+          
+  			<div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
+			<div class="checkbox">
+			</div>
+			</div>
+			<button type="submit" class="btn btn-danger">Register</a></button>
+			<button type ="submit" onclick="document.getElementById('SignIn').style.display='block'" class="btn btn-danger">SignIn</button></p>
+			</form>
+			
+			<div id="SignIn" class="w3-modal">
+              <div class="w3-modal-content w3-animate-zoom">
+                <div class="w3-container w3-blue w3-display-container" style="padding:25px 40px;">
+                <span onclick="document.getElementById('SignIn').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+                <h2>SignIn</h2>
+                </div>
+                <div class="w3-container w3-padding-10 w3-text-black">
+			    <div class="modal-body">
+                  <div class="row-xs-2">
+                  <div class="col-xs-5">
+                  <div class="well">
+                  <form id="loginForm" method="POST" action="DriverLogin">
+             
+			      <div class="form-group">
+                  <label for="username" class="control-label">Phone Number </label>
+                  <input type="text" class="form-control" id="username" name="number" required maxlength="10"title="Please enter you Phone Number" placeholder="Enter 10 digit number">
+                  <span class="help-block"></span>
+		  
+					  <div class="form-group">
+                      <label for="username" class="control-label">Password</label>
+                      <input type="password" class="form-control" id="source" name="password" title="Please enter your source" placeholder="Enter your Source">
+                      <span class="help-block"></span>
+				      </div>
+				      
+				      <button type="submit" class="btn btn-danger">SignIn</a></button>
+			  </div>
+            </div>
+			</form>	
+	
+	</div>
+	</div>
+    </div>
+  </div>
+  </div>
+  </div>
+  
+  
+  
+<!-- END Introduction Menu -->
+</div>
+
+<!-- END GRID -->
+</div><br>
+
+<!-- END w3-content -->
+</div>
+
+
+</body>
+</html>

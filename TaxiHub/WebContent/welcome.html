@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Taxi Hub/Homepage</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="project_style.css">
+</head>
+
+<body>
+<div class="bgimg w3-display-container w3-text-black">
+  <div class="w3-display-top w3-jumbo">
+  <h1><font family="Times New Roman" size="50" ><center> TAXI HUB </center></font> </h1>
+  <h3><center>At your Doorstep..!!</center></h3>
+  <h4><center>The best and affordable cab service in town.</center></h4>
+  </div>
+  <div class="w3-display-topright w3-container w3-xlarge">
+    <p><button onclick="document.getElementById('book a ride').style.display='block'" class="w3-button w3-black">Book a ride</button></p>
+    <a href="driverhomepage.html"><button type="text" class="w3-button w3-black">Chauffeur</button></a>
+  </div>
+ </div> 
+
+<!-- book a ride -->
+<div id="book a ride" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+    <div class="w3-container w3-black">
+      <span onclick="document.getElementById('book a ride').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+      <h1>Log In</h1>
+    </div>
+    <div class="w3-container">
+      <link rel="stylesheet" href="register_style.css">
+<div id="login-overlay" class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="myModalLabel">Sign in here</h4>
+</div>
+<div class="modal-body">
+<div class="row">
+<div class="col-xs-5">
+<div class="well">
+<form id="loginForm" method="POST" action="Login">
+	<div class="form-group">
+		<label for="username" class="control-label">Phone Number </label>
+		<input type="text" class="form-control" id="username" name="number" required maxlength="10" title="Please enter you Phone Number" placeholder="Enter 10 digit number">
+		<span class="help-block"></span>
+	</div>
+	<div class="form-group">
+		<label for="password" class="control-label">Password</label>
+		<input type="password" class="form-control" id="password" name="password" required minlength="8"title="Please enter your password" placeholder = "(min 8 characters)">
+		<span class="help-block"></span>
+	</div>
+	<button type="submit" class="w3-button w3-black">Sign in</button> 
+</form>
+</div>
+</div>
+<div class="col-xs-6">
+
+<ul class="list-unstyled" style="line-height: 2">
+<li><span class="fa fa-check text-success"></span> <h3>Are you new to TaxiHub?</h3></li>
+<li><span class="fa fa-check text-success"></span> <h3>Click here to register.</h3> </li>
+<a href="register.html"><button type="submit" class="w3-button w3-black">Register</button></a>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
