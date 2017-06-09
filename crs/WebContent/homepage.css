@@ -1,0 +1,25 @@
+
+body,h5 {
+	font-family: "Raleway", sans-serif
+	}
+body, html {
+	height: 100%
+	}
+
+/*.bgimg {
+    background: url("http://jalopnik.com/5886004/the-ten-best-cars-for-driving-insane-distances/") no-repeat center;
+	/*background-repeat: no-repeat;*/
+    min-height: 100%;
+    /*background-position: center;*/
+    background-size: cover;
+}*/
+div.h1 {
+    text-indent: 1000px;
+}
+
+h1 {
+    font-size: 1.5em;
+	font-family:  "Times New Roman", Times, serif;
+	
+}
+

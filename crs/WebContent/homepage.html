@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+  <title>CabReservationSystem</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="../css/homepage.css">
+</head>
+
+<body background = "http://jalopnik.com/5886004/the-ten-best-cars-for-driving-insane-distances/">
+<div class="bgimg w3-display-container w3-text-black">
+  <div class="w3-display-top w3-jumbo">
+  <h1> <center> TAXI HUB </center> </h1>
+  <h6><center>The way to go!</center></h6>
+  <h3><center> The best and most affordable cab service in the town!</center></h3>
+  </div>
+  <div class="w3-display-topright w3-container w3-xlarge">
+    <p><center><button onclick="document.getElementById('contact').style.display='block'" class="w3-button w3-black">Book a ride</button></center></p>
+  </div>
+</div> 
+
+<!-- book a ride -->
+<div id="contact" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+    <div class="w3-container w3-black">
+      <span onclick="document.getElementById('contact').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+      <h1>Book a ride</h1>
+    </div>
+    <div class="w3-container">
+      <link rel="stylesheet" href="register_style.css">
+<div id="login-overlay" class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="myModalLabel">Sign in here</h4>
+</div>
+
+<div class="modal-body">
+<div class="row">
+<div class="col-xs-5">
+<div class="well">
+<form id="loginForm" method="POST" action="Login">
+<div class="form-group">
+<label name="username" class="control-label">Phone Number </label>
+<input type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you Phone Number" placeholder="98585*****">
+<span class="help-block"></span>
+
+</div>
+<div class="form-group">
+<label name="password" class="control-label">Password</label>
+<input type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password" placeholder = "(min 8 characters)">
+<span class="help-block"></span>
+</div>
+
+<div class="checkbox">
+<label>
+<input type="checkbox" name="remember" id="remember"> Remember login
+</label>
+</div>
+<input type="submit" value="Log In">
+
+</form>
+</div>
+</div>
+<div class="col-xs-6">
+</div>
+</div>
+</div>
+</div>
+</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
