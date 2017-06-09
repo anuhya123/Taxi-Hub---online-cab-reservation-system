@@ -32,13 +32,19 @@ public class BasicDriverDetailsController extends HttpServlet {
 		// TODO Auto-generated method stub
 		String status = "available";
 		PrintWriter out = response.getWriter();
+		String phone_num = (String) request.getSession(false).getAttribute("number");
+		String source = request.getParameter("source");
+		String destination = request.getParameter("destination");
 		
+
 		DriverDetailsBasicDAO dedao = new DriverDetailsBasicDAO();
 		try {
 			//String email = dedao.getDriverEmailBasic(status);
+			
 			String driver = dedao.retrieveCabDriver(status);
 			String phone = dedao.retrieveDriverPhone(status);
 			String cabNumber = dedao.retrieveCabNumber(status);
+			dedao.insertIntoBookings(phone_num,cabNumber,source,destination);
 			//String cabName = dedao.retrieveCabName(status);
 			//System.out.println(email);
 			//request.setAttribute("email", email);

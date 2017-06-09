@@ -10,9 +10,53 @@ public class DriverDetailsBasicDAO {
 	ConnectionDAO cdao = new ConnectionDAO();
 	Connection conn = cdao.getCon();
 	
-	//public boolean insertIntoBookings(String phone, String registratString source, String destination) {
+	public void insertIntoBookings(String phone) throws SQLException {
+		boolean inserted = false;
+		String sql = "insert into bookings(phone_num,amount_paid) values(?,?)";
 		
-	//}
+
+		PreparedStatement preparedStatement = conn.prepareStatement(sql);
+		preparedStatement.setString(1, phone);
+		preparedStatement.setString(2, "0");
+		preparedStatement.executeUpdate();
+	}
+	
+	public void insertIntoBookings(String phone, String source, String destination) throws SQLException {
+		boolean inserted = false;
+		String sql = "insert into bookings(phone_num, source,destination,amount_paid) values(?,?,?,?)";
+		
+
+		PreparedStatement preparedStatement = conn.prepareStatement(sql);
+		preparedStatement.setString(1, phone);
+		//preparedStatement.setString(2, registration_num);
+		preparedStatement.setString(2, source);
+		preparedStatement.setString(3, destination);
+		preparedStatement.setString(4, "0");
+		preparedStatement.executeUpdate();
+	}
+	public void insertIntoBookings(String phone, String registration_num, String source, String destination) throws SQLException {
+		boolean inserted = false;
+		String sql = "insert into bookings(phone_num, registration_num, source,destination,amount_paid) values(?,?,?,?,?)";
+		
+
+		PreparedStatement preparedStatement = conn.prepareStatement(sql);
+		preparedStatement.setString(1, phone);
+		preparedStatement.setString(2, registration_num);
+		preparedStatement.setString(3, source);
+		preparedStatement.setString(4, destination);
+		preparedStatement.setString(5, "0");
+		preparedStatement.executeUpdate();
+	}
+		/*if (i > 0) {
+			Statement statement =conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			if(rs.next()){
+				if(rs.getString(2).equals(number) || (rs.getString(3).length() < 8)){
+					status = false;
+				}
+		    }
+	    }*/
+
 	public String getDriverEmailBasic(String status) throws SQLException {
 		String email = null;
 		String sql = "select email from driver where registration_num in (select registration_num from vehicle where status = ? and cost_per_km = 6)";
