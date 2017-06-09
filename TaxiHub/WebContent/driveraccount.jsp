@@ -32,7 +32,7 @@
 <table border="0" cellpadding="0" cellspacing="3">
 <tr>
     <td colspan="2">
-		<form method = "post" action ="UserDetailsController">
+		<form name = "Form1" method = "post" action ="UserDetailsController">
 			
         	<input type="submit" value="Get Bookings" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal" onclick="">
 			<input id="origin-input" class="controls" type="text" name ="source"
@@ -42,6 +42,8 @@
         placeholder="Enter drop" value = <%=request.getAttribute("destination") %>>
         
         <input type="button" value="Start Ride" class="btn btn-info btn-lg" onclick="GetRoute()">
+        
+        <input type="button" value="End Ride" class="btn btn-info btn-lg" onclick="Controller()">
 		
 	</form>
 	<b>User Phone Number:</b> <%=request.getAttribute("unum") %><br>
@@ -59,7 +61,7 @@
         <div id="dvMap" style="width: 500px; height: 500px"></div>
     </td>
     <td>
-        <div id="dvPanel" style="width: 600px; height: 500px">
+        <div id="dvPanel" style="width: 400px; height: 500px">
         </div>
     </td>
 </tr>
@@ -125,14 +127,18 @@ function GetRoute() {
             var dvDistance = document.getElementById("dvDistance");
 			
            dvDistance.innerHTML = "";
-            dvDistance.innerHTML += "Distance: " + distance + "<br />";
-            dvDistance.innerHTML += "Duration:"+ duration + "<br/>";
-			dvDistance.innerHTML += "Ride estimate:Rs." + rideEstimate;
+            
+			dvDistance.innerHTML += "<b>Ride estimate:</b> Rs." + rideEstimate + "/-";
  
         } else {
             alert("Unable to find the distance via road.");
         }
     });
+}
+function Controller() {
+	document.Form1.action = "EndRideController";
+	document.Form1.submit();
+	return true;
 }
 </script>
 </body>

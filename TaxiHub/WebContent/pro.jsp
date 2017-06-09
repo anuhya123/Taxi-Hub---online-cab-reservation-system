@@ -16,16 +16,16 @@
 <table border="0" cellpadding="0" cellspacing="3">
 <tr>
     <td colspan="2">
-        <input id="origin-input" class="controls" type="text"
-        placeholder="Enter an origin location">
+       <h6>Click on Get Driver and click on proceed to get driver details.</h6>
+		<form method = "post" action ="ProDriverDetailsController">
+		
+        <input id="origin-input" class="controls" type="text" name ="source"
+        placeholder="Enter pickup">
         
-        <input id="destination-input" class="controls" type="text"
-        placeholder="Enter a destination location">
+        <input id="destination-input" class="controls" type="text" name ="destination"
+        placeholder="Enter drop">
 		
 		<input type="button" value="Get Route" class="btn btn-info btn-lg" onclick="GetRoute()">
-        
-	    	<h6>Click on Get Driver and click on proceed to get driver details.</h6>
-		<form method = "post" action ="ProDriverDetailsController">
 		
 			<input type="submit" value="Get Driver" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal" onclick="">
 			
@@ -44,7 +44,7 @@
 					<div class="modal-body">
 						<h3>Your ride has been confirmed.</h3>
 						<h4>Driver Name: <%=request.getAttribute("driver")%></h4>
-      					<h4>Contact Number: <%=request.getAttribute("phone")%></h4>
+      					<h4>Contact Number:<%=request.getAttribute("phone")%></h4>
       					<h4>Vehicle Number: <%=request.getAttribute("cabNumber")%></h4>
 						<h4>The driver should be arriving in 5-10 minutes. </h4>
 						<h5>Thank you for using our services. Do visit us again!!</h5>
@@ -59,7 +59,6 @@
 		
 		</form>
       
-<br></br>
 </td>
 </tr>
 <tr>

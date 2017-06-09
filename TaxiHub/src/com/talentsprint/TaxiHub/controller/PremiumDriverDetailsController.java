@@ -29,6 +29,9 @@ public class PremiumDriverDetailsController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String status = "available";
 		PrintWriter out = response.getWriter();
+		String phone_num = (String) request.getSession(false).getAttribute("number");
+		String source = request.getParameter("source");
+		String destination = request.getParameter("destination");
 		
 		DriverDetailsPremiumDAO dedao = new DriverDetailsPremiumDAO();
 		try {
@@ -36,6 +39,8 @@ public class PremiumDriverDetailsController extends HttpServlet {
 			String driver = dedao.retrieveCabDriver(status);
 			String phone = dedao.retrieveDriverPhone(status);
 			String cabNumber = dedao.retrieveCabNumber(status);
+			int did = dedao.retrieveDriverId(status);
+			dedao.insertIntoBookings(phone_num,did,cabNumber,source,destination);
 			//String cabName = dedao.retrieveCabName(status);
 			//System.out.println(email);
 			//request.setAttribute("email", email);

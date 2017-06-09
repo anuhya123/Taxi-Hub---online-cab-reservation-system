@@ -13,7 +13,7 @@ public class DriverDetailsBasicDAO {
 	
 	public void insertIntoBookings(String phone,int did, String registration_num, String source, String destination) throws SQLException {
 		boolean inserted = false;
-		String sql = "insert into bookings(phone_num, driver_id, registration_num, source,destination,amount_paid) values(?,?,?,?,?,?)";
+		String sql = "insert into bookings(phone_num, driver_id, registration_num, source,destination,amount_paid,cost_per_km) values(?,?,?,?,?,?,?)";
 		
 
 		PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -23,6 +23,7 @@ public class DriverDetailsBasicDAO {
 		preparedStatement.setString(4, source);
 		preparedStatement.setString(5, destination);
 		preparedStatement.setString(6, "0");
+		preparedStatement.setInt(7, 6);
 		preparedStatement.executeUpdate();
 	}
 		/*if (i > 0) {
