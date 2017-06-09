@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
     
 <!DOCTYPE html>
 <html>
@@ -91,8 +90,8 @@ var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 
 google.maps.event.addDomListener(window, 'load', function () {
-    new google.maps.places.SearchBox(document.getElementById('origin-input'));
-    new google.maps.places.SearchBox(document.getElementById('destination-input'));
+    source = new google.maps.places.SearchBox(document.getElementById('origin-input'));
+    destination = new google.maps.places.SearchBox(document.getElementById('destination-input'));
     directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });
 });
 //alert(" after map load");

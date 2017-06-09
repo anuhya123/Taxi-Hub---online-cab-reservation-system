@@ -10,6 +10,9 @@ public class DriverDetailsBasicDAO {
 	ConnectionDAO cdao = new ConnectionDAO();
 	Connection conn = cdao.getCon();
 	
+	//public boolean insertIntoBookings(String phone, String registratString source, String destination) {
+		
+	//}
 	public String getDriverEmailBasic(String status) throws SQLException {
 		String email = null;
 		String sql = "select email from driver where registration_num in (select registration_num from vehicle where status = ? and cost_per_km = 6)";
