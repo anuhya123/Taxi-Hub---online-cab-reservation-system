@@ -24,31 +24,41 @@
 		
 		<input type="button" value="Get Route" class="btn btn-info btn-lg" onclick="GetRoute()">
         
-	    <input type="button" value="Proceed" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" onclick="">
+	    	<h6>Click on Get Driver and click on proceed to get driver details.</h6>
+		<form method = "post" action ="ProDriverDetailsController">
+		
+			<input type="submit" value="Get Driver" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal" onclick="">
+			
+			<input type="button" value="Proceed" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" onclick="">
         
 		 <!-- Modal -->
            <div class="modal fade" id="myModal" role="dialog">
              <div class="modal-dialog">
     
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
           
-        </div>
-        <div class="modal-body">
-          <h3>Your ride has been confirmed.</h3>
-          <h4>The driver should be arriving in 5-10 minutes. </h4>
-          <h5>Thank you for using our services. Do visit us again!!</h5>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Confirm</button>
-        </div>
-      </div>
+					</div>
+					<div class="modal-body">
+						<h3>Your ride has been confirmed.</h3>
+						<h4>Driver Name: <%=request.getAttribute("driver")%></h4>
+      					<h4>Contact Number: <%=request.getAttribute("phone")%></h4>
+      					<h4>Vehicle Number: <%=request.getAttribute("cabNumber")%></h4>
+						<h4>The driver should be arriving in 5-10 minutes. </h4>
+						<h5>Thank you for using our services. Do visit us again!!</h5>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
       
-    </div>
-  </div>
-</div>
+			</div>
+		</div>
+		
+		</form>
+      
 <br></br>
 </td>
 </tr>
@@ -60,12 +70,7 @@
 </tr>
 <tr>
     <td>
-        <div id="dvMap" style="width: 800px; height: 500px">
-        </div>
-    </td>
-	
-    <td>
-        <div id="dvPanel" style="width: 600px; height: 500px">
+        <div id="dvMap" style="width: 1300px; height: 500px">
         </div>
     </td>
 </tr>
@@ -126,7 +131,7 @@ function GetRoute() {
             var duration = response.rows[0].elements[0].duration.text;
 			//alert(distance);
 			//alert(duration);
-			var rideEstimate = 8 * parseInt(distance) + 50;
+			var rideEstimate = 8 * parseInt(distance) + 150;
 			//alertrt(6 * parseInt(distance));
             var dvDistance = document.getElementById("dvDistance");
 			

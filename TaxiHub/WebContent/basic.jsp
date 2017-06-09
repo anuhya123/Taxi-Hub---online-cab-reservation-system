@@ -26,7 +26,7 @@
 		
 		<input type="button" value="Get Route" class="btn btn-info btn-lg" onclick="GetRoute()">
 		<h6>Click on Get Driver and click on proceed to get driver details.</h6>
-		<form method = "post" action ="DriverDetailsController">
+		<form method = "post" action ="BasicDriverDetailsController">
 		
 			<input type="submit" value="Get Driver" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal" onclick="">
 			
