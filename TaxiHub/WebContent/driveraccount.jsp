@@ -1,5 +1,7 @@
+<%@page import="com.talentsprint.TaxiHub.model.BookingModel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page language="java" import="java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,7 +13,7 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="basicdriver.css">
+<link rel="stylesheet" href="basicdriver.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  
@@ -21,10 +23,11 @@
 <!-- Sidebar -->
 <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
   <img src="13.png" style="width:75%;" class="w3-round"><br><br>
-    <h2><b><%=session.getAttribute("username")%></b></h2>
-  <a href="#" class="w3-bar-item w3-button w3-padding"><span class = "glyphicon glyphicon-th"></span><%=session.getAttribute("number")%></a>
-  <a href="#" class="w3-bar-item w3-button w3-padding"><span class="glyphicon glyphicon-phone"></span><%=session.getAttribute("registration")%></a>
-  <a href="driverhomepage.html" class="w3-bar-item w3-button w3-padding">Logout</a>
+    <h2><b><i class="fa fa-user"></i> <%=session.getAttribute("username")%></b></h2>
+  <a href="#" class="w3-bar-item w3-button w3-padding"><span class = "glyphicon glyphicon-earphone"></span> <%=session.getAttribute("number")%></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-address-book"></i> <%=session.getAttribute("registration")%></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-car"></i> <%=session.getAttribute("vname")%></a>
+  <a href="DriverLogout" class="w3-bar-item w3-button w3-padding">Logout</a>
 </div>
 
 <div class="w3-container">
@@ -33,22 +36,37 @@
 <tr>
     <td colspan="2">
 		<form name = "Form1" method = "post" action ="UserDetailsController">
-			
-        	<input type="submit" value="Get Bookings" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal" onclick="">
-			<input id="origin-input" class="controls" type="text" name ="source"
-        placeholder="Enter pickup" value=<%=request.getAttribute("source") %>>
-        
-        <input id="destination-input" class="controls" type="text" name ="destination"
-        placeholder="Enter drop" value = <%=request.getAttribute("destination") %>>
-        
+        	<input type="submit" value="Get Bookings" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal" onclick="generateTable()">
+        	<table border = "1">
+        	<tr>
+        		<td>Contact</td>
+        		<td>Source</td>
+        		<td>Destination</td>
+        		
+    			<td>Ride Status</td>
+        	</tr>
+        	<% 
+        		ArrayList<BookingModel> al = (ArrayList<BookingModel>)request.getAttribute("details");
+        		if(al!=null){
+        		for(BookingModel model : al) {
+        	%>
+        	<tr>
+        		<td><%= model.getPhone_num() %></td>
+        		<td><%= model.getSource() %></td>
+        		<td><%= model.getDestination() %></td>	
+        		<td><a href = "drivermaps.jsp"><input type="submit" name="button" id = "accept" value = "Accept"></a></td>
+        	</tr>
+        	<%}} %>
+        	</table>
+        <input id="origin-input" class="controls" type="text" name ="source" placeholder="Enter pickup" value=<%=request.getAttribute("source") %>>
+        <input id="destination-input" class="controls" type="text" name ="destination" placeholder="Enter drop" value = <%=request.getAttribute("destination") %>>
         <input type="button" value="Start Ride" class="btn btn-info btn-lg" onclick="GetRoute()">
-        
         <input type="button" value="End Ride" class="btn btn-info btn-lg" onclick="Controller()">
-		
-	</form>
-	<b>User Phone Number:</b> <%=request.getAttribute("unum") %><br>
-	<b>Date and time of booking:</b> <%=request.getAttribute("datetime") %><br>
-</td>
+	<b>User Phone Number:</b> <%=request.getAttribute("contact") %><br>
+	<b>Date and time of booking:</b> <%=request.getAttribute("datetime") %><br> 
+        	
+				</form>
+				</td>
 </tr>
 <tr>
     <td colspan="2">
@@ -126,7 +144,7 @@ function GetRoute() {
 			//alertrt(6 * parseInt(distance));
             var dvDistance = document.getElementById("dvDistance");
 			
-           dvDistance.innerHTML = "";
+            dvDistance.innerHTML = "";
             
 			dvDistance.innerHTML += "<b>Ride estimate:</b> Rs." + rideEstimate + "/-";
  
@@ -136,9 +154,16 @@ function GetRoute() {
     });
 }
 function Controller() {
-	document.Form1.action = "EndRideController";
-	document.Form1.submit();
-	return true;
+	window.location.reload();
+}
+
+var accept = document.getElementById("accept");
+var decline = document.getElementById("decline");
+
+function changeStatus() {
+	if (document.getElementById("accept")) {
+			
+	}
 }
 </script>
 </body>

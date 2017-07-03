@@ -36,7 +36,6 @@ public class BasicDriverDetailsController extends HttpServlet {
 		String source = request.getParameter("source");
 		String destination = request.getParameter("destination");
 		
-
 		DriverDetailsBasicDAO dedao = new DriverDetailsBasicDAO();
 		try {
 			//String email = dedao.getDriverEmailBasic(status);

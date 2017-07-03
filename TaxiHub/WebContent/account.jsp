@@ -34,6 +34,7 @@
   <div class="w3-bar-block">
     <a href="#phone number"class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i><%=session.getAttribute("number")%></a> 
    	<a href="https://docs.google.com/forms/d/e/1FAIpQLSewGHuDp9zuaZlSIp_yHxg00FdLCkRQ88Al8Ul1ULNJQhKthQ/viewform?c=0&w=1" class="w3-bar-item w3-button w3-padding"></i>Feedback</a>
+   	<a href="billing.html" class="w3-bar-item w3-button w3-padding"></i>Billing</a>
     <a href="#close" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"></i>Close</a>
     <a href="Logout" class="w3-bar-item w3-button w3-padding"></i>LogOut</a>
 	</div>
@@ -61,7 +62,7 @@
           <li class="w3-black w3-xxlarge w3-padding-32">Basic</li>
           <li class="w3-padding-16">Datsun Go</li>
           <li class="w3-padding-16">Tata Indica</li>
-          <li class="w3-padding-16">FIFO</li>
+          <li class="w3-padding-16">Nano</li>
 		  <li class="w3-padding-16">Maruthi Alto</li>
           <li class="w3-padding-16">
             <h2>6/km</h2>
@@ -82,7 +83,7 @@
           <li class="w3-padding-16">Maruti Ritz</li>
           <li class="w3-padding-16">Nissan Micra</li>
           <li class="w3-padding-16">Tata Indica</li>
-          <li class="w3-padding-16">FIFO</li>
+          <li class="w3-padding-16">Polo</li>
           <li class="w3-padding-16">
             <h2>8/km</h2>
             <span class="w3-opacity">Capacity : 4 members</span><br></br>

@@ -31,37 +31,37 @@ public class DriverRegister extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		String name = request.getParameter("username");
+		String name = request.getParameter("user");
 		String contact = request.getParameter("number");
-		String registration = request.getParameter("vehiclenum");
+		String registration = request.getParameter("registration");
 		String password = request.getParameter("password");
 		String vname = request.getParameter("vname");
-		String cabPack = request.getParameter("cabPackage");
+		String cabPack = request.getParameter("cost");
 		//String status = "unavailable";
 		
 		DriverDAO ddao = new DriverDAO();
 		try {
-			boolean isVehicleSet = ddao.isVehicleRegistered(vname, registration, cabPack);
+			boolean isVehicleSet = ddao.validateVehicle(registration);
 			if (isVehicleSet) {
-				boolean isDriverJoined = ddao.isDriverRegistered(name, contact, registration, password);
-				if (isDriverJoined) {
-					HttpSession session = request.getSession();
-		            session.setAttribute("username", name);
-		            session.setAttribute("number", contact);
-		            session.setAttribute("vehiclenum", registration);
-		            session.setAttribute("password", password);
-		            session.setAttribute("vname", vname);
-		            session.setAttribute("cabPpackage", cabPack);
-		            response.sendRedirect("driverhomepage.html");
-				} else {
-					out.println("Number already registered!");
-					RequestDispatcher rd = request.getRequestDispatcher("driverhomepage.html");
-				    rd.forward(request, response);
-				}
-		    } else {
-		    	out.println("Problem registering. try again!!");
-		    	RequestDispatcher rd = request.getRequestDispatcher("driverhomepage.html");
+				out.println("<script type=\"text/javascript\">");
+			    out.println("alert('Vehicle already registered!!');");
+			    out.println("</script>");
+			    RequestDispatcher rd = request.getRequestDispatcher("dhomepage.jsp");
 			    rd.forward(request, response);
+			} else {
+				boolean isDriverJoined = ddao.validateDriver(registration);
+				if (isDriverJoined) {
+					out.println("<script type=\"text/javascript\">");
+				    out.println("alert('Driver already registered!!');");
+				    out.println("</script>");
+				    RequestDispatcher rd = request.getRequestDispatcher("dhomepage.jsp");
+				    rd.forward(request, response);
+				} else {
+					ddao.registerVehicle(vname, registration, cabPack);
+					ddao.registerDriver(name, contact, registration, password);
+		            RequestDispatcher rd = request.getRequestDispatcher("dhomepage.jsp");
+		            rd.forward(request, response);
+				}
 		    }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
