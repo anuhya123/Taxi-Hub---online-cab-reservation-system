@@ -15,6 +15,36 @@ public class UserDetailsDAO {
 	ConnectionDAO cdao = new ConnectionDAO();
 	Connection conn = cdao.getCon();
 	
+	/*public String showRides(String registration) {
+		Statement stmt = conn.createStatement();
+		String query = "select phone_num,source,destination from bookings where registration_num= 'registration' and status='waiting'";
+		ResultSet rs = stmt.executeQuery(query);	
+		if(rs.next()) {
+			out.println("<form action='Accept.jsp'>");
+			out.println(rs.getInt(2));
+			out.println("<input type='hidden' name='cid' value='"+rs.getInt(2)+"'>");
+			out.println("<input type='submit' value='Accept'>");
+			out.println("</form>");
+		}
+		return ("NO BOOKING AVAILABLE");
+	}*/
+	
+	
+	/*public void accept(String phone_num) {
+		Statement stmt = conn.createStatement();
+		String cid = request.getParameter("cid");
+		
+		String query1 = "update ride set status='accepted' where did=101 and cid="+cid;
+		int row = stmt.executeUpdate(query1);	
+		if(row!=0) {
+			out.println("DONE");
+			String query2 = "update driver set dstatus='unavailable' where did=101";
+			int row2 = stmt.executeUpdate(query2);
+			if(row2!=0) {
+				out.println("DONE");
+			}
+		}
+	}*/
 	public String getUserPhone(String registration) throws SQLException {
 		//List<String> bookings = new ArrayList<String>();
 		String unum = " ";
@@ -103,18 +133,22 @@ public class UserDetailsDAO {
 		return dataList;
 	}
 	
-	public boolean resetStatus(String registration) throws SQLException {
-		boolean update = false;
+	public String resetStatus(String registration) throws SQLException {
+		//boolean update = false;
 		System.out.println(registration);
 		String sql = "update vehicle set status = ? where registration_num = ?";
 		PreparedStatement statement = conn.prepareStatement(sql);
-		statement.setString(1, "busy");
+		statement.setString(1, "accepted");
 		statement.setString(2, registration);
 		int i= statement.executeUpdate();
-		if (i > 0) {
-			update = true;
+		if (i != 0) {
+			String query2 = "update driver set dstatus='unavailable' where did=101";
+			int row2 = statement.executeUpdate(query2);
+			if(row2!=0) {
+				return("END OF RIDE!");
+			}
 		}
-		System.out.println(update);
-		return update;		
+		//System.out.println(update);
+		return "";		
 	}
 }

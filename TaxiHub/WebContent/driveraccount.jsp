@@ -56,8 +56,12 @@
         		<td><%= model.getDestination() %></td>	
         		<td><a href = "drivermaps.jsp"><input type="submit" name="button" id = "accept" value = "Accept"></a></td>
         	</tr>
-        	<%}} %>
-        	</table>
+        	<%}} else{ %>
+        	<tr>
+        		<td>NO BOOKINGS AVAILABLE!!</td>
+        	</tr>
+        	<%} %>
+        </table>
         <input id="origin-input" class="controls" type="text" name ="source" placeholder="Enter pickup" value=<%=request.getAttribute("source") %>>
         <input id="destination-input" class="controls" type="text" name ="destination" placeholder="Enter drop" value = <%=request.getAttribute("destination") %>>
         <input type="button" value="Start Ride" class="btn btn-info btn-lg" onclick="GetRoute()">
@@ -160,11 +164,9 @@ function Controller() {
 var accept = document.getElementById("accept");
 var decline = document.getElementById("decline");
 
-function changeStatus() {
-	if (document.getElementById("accept")) {
-			
-	}
-}
+document.getElementById("accept").onclick = function () {
+    location.href = "drivermaps.jsp";
+};
 </script>
 </body>
 </html>

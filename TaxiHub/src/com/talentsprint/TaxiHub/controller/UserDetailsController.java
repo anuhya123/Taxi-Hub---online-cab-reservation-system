@@ -56,8 +56,8 @@ public class UserDetailsController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("driveraccount.jsp");
 			rd.forward(request, response);
 			if(button.equals("Accept")) {
-				boolean result = udao.resetStatus(registration);
-				if (result) {
+				String result = udao.resetStatus(registration);
+				if (result == "END OF RIDE!") {
 					out.println("okay");
 				}
 			}

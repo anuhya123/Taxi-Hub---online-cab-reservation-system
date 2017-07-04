@@ -17,7 +17,7 @@
 <tr>
     <td colspan="2">
        <h6>Click on Get Driver and click on proceed to get driver details.</h6>
-		<form method = "post" action ="ProDriverDetailsController">
+		<form method = "post" action ="SampleController">
 		
         <input id="origin-input" class="controls" type="text" name ="source"
         placeholder="Enter pickup">

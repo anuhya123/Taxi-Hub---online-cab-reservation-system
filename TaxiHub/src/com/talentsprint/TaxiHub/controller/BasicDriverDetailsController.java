@@ -20,11 +20,9 @@ public class BasicDriverDetailsController extends HttpServlet {
        
     public BasicDriverDetailsController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -39,19 +37,20 @@ public class BasicDriverDetailsController extends HttpServlet {
 		DriverDetailsBasicDAO dedao = new DriverDetailsBasicDAO();
 		try {
 			//String email = dedao.getDriverEmailBasic(status);
-			
-			String driver = dedao.retrieveCabDriver(status);
-			String phone = dedao.retrieveDriverPhone(status);
+			String result = dedao.bookRide(phone_num,source,destination);
+			/*String driver = dedao.retrieveCabDriver(status);
+			String phone = dedao.retrieveDriverPhone(status);*/
 			String cabNumber = dedao.retrieveCabNumber(status);
-			int did = dedao.retrieveDriverId(status);
+			/*int did = dedao.retrieveDriverId(status);
 			dedao.insertIntoBookings(phone_num,did,cabNumber,source,destination);
 			//String cabName = dedao.retrieveCabName(status);
 			//System.out.println(email);
 			//request.setAttribute("email", email);
 			request.setAttribute("driver", driver);
-			request.setAttribute("phone", phone);
+			request.setAttribute("phone", phone);*/
+			request.setAttribute("phone_num",phone_num);
 			request.setAttribute("cabNumber", cabNumber);
-			//request.setAttribute("cabName", cabName);
+			request.setAttribute("result", result);
 			RequestDispatcher rd = request.getRequestDispatcher("basic.jsp");
 		    rd.forward(request, response);
 		} catch (SQLException e) {

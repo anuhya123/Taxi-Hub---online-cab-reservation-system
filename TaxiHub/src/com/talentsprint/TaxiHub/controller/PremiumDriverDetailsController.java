@@ -48,7 +48,7 @@ public class PremiumDriverDetailsController extends HttpServlet {
 			request.setAttribute("phone", phone);
 			request.setAttribute("cabNumber", cabNumber);
 			//request.setAttribute("cabName", cabName);
-			RequestDispatcher rd = request.getRequestDispatcher("basic.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("premium.jsp");
 		    rd.forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();

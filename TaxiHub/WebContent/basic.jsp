@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-    
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,15 +9,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="basic.css">
+  <link rel="stylesheet" href="pro.css">
 </head>
 
 <body>
 <table border="0" cellpadding="0" cellspacing="3">
 <tr>
     <td colspan="2">
-    <h6>Click on Get Driver and click on proceed to get driver details.</h6>
+       <h6>Click on Get Driver and click on proceed to get driver details.</h6>
 		<form method = "post" action ="BasicDriverDetailsController">
 		
         <input id="origin-input" class="controls" type="text" name ="source"
@@ -28,8 +26,10 @@
         placeholder="Enter drop">
 		
 		<input type="button" value="Get Route" class="btn btn-info btn-lg" onclick="GetRoute()">
-		<input type="button" value="Confirm Booking" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal">
-		<input type="button" value="Show Details" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" onclick="">
+		
+			<input type="submit" value="Get Driver" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal" onclick="">
+			<div id = "results"><%=request.getAttribute("result") %></div>
+			<input type="button" value="Proceed" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" onclick="">
         
 		 <!-- Modal -->
            <div class="modal fade" id="myModal" role="dialog">
@@ -58,13 +58,7 @@
 		</div>
 		
 		</form>
-      	
-      	
-      	
-    </div>
-  </div>
-</div>
-<br></br>
+      
 </td>
 </tr>
 <tr>
@@ -75,7 +69,8 @@
 </tr>
 <tr>
     <td>
-        <div id="dvMap" style="width: 1500px; height: 500px"></div>
+        <div id="dvMap" style="width: 1300px; height: 500px">
+        </div>
     </td>
 </tr>
 </table>
@@ -90,8 +85,8 @@ var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 
 google.maps.event.addDomListener(window, 'load', function () {
-    source = new google.maps.places.SearchBox(document.getElementById('origin-input'));
-    destination = new google.maps.places.SearchBox(document.getElementById('destination-input'));
+    new google.maps.places.SearchBox(document.getElementById('origin-input'));
+    new google.maps.places.SearchBox(document.getElementById('destination-input'));
     directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });
 });
 //alert(" after map load");
@@ -103,7 +98,7 @@ function GetRoute() {
     };
     map = new google.maps.Map(document.getElementById('dvMap'), mapOptions);
     directionsDisplay.setMap(map);
-    //directionsDisplay.setPanel(document.getElementById('dvPanel'));
+    directionsDisplay.setPanel(document.getElementById('dvPanel'));
  
     //*********DIRECTIONS AND ROUTE**********************//
     source = document.getElementById("origin-input").value;
@@ -135,7 +130,7 @@ function GetRoute() {
             var duration = response.rows[0].elements[0].duration.text;
 			//alert(distance);
 			//alert(duration);
-			var rideEstimate = (6* parseInt(distance)) + 100;
+			var rideEstimate = 8 * parseInt(distance) + 100;
 			//alertrt(6 * parseInt(distance));
             var dvDistance = document.getElementById("dvDistance");
 			
@@ -148,6 +143,24 @@ function GetRoute() {
             alert("Unable to find the distance via road.");
         }
     });
+}
+
+var myVar = setInterval(checkBookingStatus, 5000)
+
+
+function checkBookingStatus() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if(this.readyState == 4 && this.status == 200) {
+			var resp = this.responseText;
+			
+			document.getElementById("results").innerHTML = resp;
+		}
+		};
+	
+	
+	xhttp.open("GET","CheckForAccept.jsp",true);
+	xhttp.send();
 }
 </script>
 </body>
