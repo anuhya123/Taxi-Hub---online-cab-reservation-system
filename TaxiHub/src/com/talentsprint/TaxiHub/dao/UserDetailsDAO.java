@@ -142,8 +142,11 @@ public class UserDetailsDAO {
 		statement.setString(2, registration);
 		int i= statement.executeUpdate();
 		if (i != 0) {
-			String query2 = "update driver set dstatus='unavailable' where did=101";
-			int row2 = statement.executeUpdate(query2);
+			String query2 = "update driver set driver_status=? where registration_num=?";
+			PreparedStatement stat = conn.prepareStatement(query2);
+			stat.setString(1, "unavailable");
+			stat.setString(2, registration);
+			int row2 = statement.executeUpdate();
 			if(row2!=0) {
 				return("END OF RIDE!");
 			}

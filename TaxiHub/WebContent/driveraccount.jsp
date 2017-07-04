@@ -55,10 +55,8 @@
         		<td><%= model.getSource() %></td>
         		<td><%= model.getDestination() %></td>	
         		<td><a href = "drivermaps.jsp"><input type="submit" name="button" id = "accept" value = "Accept"></a></td>
-        	</tr>
-        	<%}} else{ %>
-        	<tr>
-        		<td>NO BOOKINGS AVAILABLE!!</td>
+        		<%}} else { %>
+        		<td>NO BOOKINGS</td>
         	</tr>
         	<%} %>
         </table>
