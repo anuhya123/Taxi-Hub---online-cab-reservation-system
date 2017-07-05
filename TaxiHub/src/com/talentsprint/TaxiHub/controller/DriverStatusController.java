@@ -31,24 +31,24 @@ public class DriverStatusController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		String number = request.getParameter("user");
+		String drivernumber = request.getParameter("user");
 		String password = request.getParameter("password");
 		DriverStatusDAO dsdao = new DriverStatusDAO();
 		try {
-			boolean result = dsdao.validateDriver(number, password);
+			boolean result = dsdao.validateDriver(drivernumber, password);
 			out.println(result);
 			if (result) {
-				String DBName = dsdao.getUserName(number);
-				String registration = dsdao.getVehicleNumber(number);
+				String driverName = dsdao.getUserName(drivernumber);
+				String registration = dsdao.getVehicleNumber(drivernumber);
 				boolean isUpdated = dsdao.updateStatus(registration, password);
 				if(isUpdated){
 					out.println("Okay!");
 				}
-				String vname = dsdao.getVehicleName(number);
+				String vname = dsdao.getVehicleName(drivernumber);
 				out.println(vname);
 				HttpSession session = request.getSession();
-				session.setAttribute("username", DBName);
-	            session.setAttribute("number", number);
+				session.setAttribute("driverName", driverName);
+	            session.setAttribute("drivernumber", drivernumber);
 	            session.setAttribute("registration", registration);
 	            session.setAttribute("vname", vname);
 	            response.sendRedirect("driveraccount.jsp");

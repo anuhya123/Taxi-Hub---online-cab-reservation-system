@@ -1,5 +1,10 @@
 @CHARSET "ISO-8859-1";
 html, body {
+	background-image: url(12.jpg);
+	background-repeat: no-repeat;
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
         height: 100%;
         margin: 0;
         padding: 0;
@@ -32,3 +37,20 @@ html, body {
       #destination-input:focus {
         border-color: #4d90fe;
       }
+       #tableContainer-1 {
+    height: 100%;
+    width: 100%;
+    display: table;
+  }
+  #tableContainer-2 {
+    vertical-align: middle;
+    horizontal-align: middle;
+    display: table-cell;
+    height: 100%;
+  }
+  #myTable {
+    margin-left:600px; /* half of width */
+    margin-top:30px;  /* half of height */
+    top:50%;
+    left:50%;
+  }

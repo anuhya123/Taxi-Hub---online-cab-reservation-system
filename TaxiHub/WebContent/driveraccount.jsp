@@ -23,8 +23,8 @@
 <!-- Sidebar -->
 <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
   <img src="13.png" style="width:75%;" class="w3-round"><br><br>
-    <h2><b><i class="fa fa-user"></i> <%=session.getAttribute("username")%></b></h2>
-  <a href="#" class="w3-bar-item w3-button w3-padding"><span class = "glyphicon glyphicon-earphone"></span> <%=session.getAttribute("number")%></a>
+    <h2><b><i class="fa fa-user"></i> <%=session.getAttribute("driverName")%></b></h2>
+  <a href="#" class="w3-bar-item w3-button w3-padding"><span class = "glyphicon glyphicon-earphone"></span> <%=session.getAttribute("drivernumber")%></a>
   <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-address-book"></i> <%=session.getAttribute("registration")%></a>
   <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-car"></i> <%=session.getAttribute("vname")%></a>
   <a href="DriverLogout" class="w3-bar-item w3-button w3-padding">Logout</a>
@@ -54,7 +54,7 @@
         		<td><%= model.getPhone_num() %></td>
         		<td><%= model.getSource() %></td>
         		<td><%= model.getDestination() %></td>	
-        		<td><a href = "drivermaps.jsp"><input type="submit" name="button" id = "accept" value = "Accept"></a></td>
+        		<td><input type="submit" name="button" id = "accept" value = "Accept"></td>
         		<%}} else { %>
         		<td>NO BOOKINGS</td>
         	</tr>
@@ -63,9 +63,8 @@
         <input id="origin-input" class="controls" type="text" name ="source" placeholder="Enter pickup" value=<%=request.getAttribute("source") %>>
         <input id="destination-input" class="controls" type="text" name ="destination" placeholder="Enter drop" value = <%=request.getAttribute("destination") %>>
         <input type="button" value="Start Ride" class="btn btn-info btn-lg" onclick="GetRoute()">
-        <input type="button" value="End Ride" class="btn btn-info btn-lg" onclick="Controller()">
-	<b>User Phone Number:</b> <%=request.getAttribute("contact") %><br>
-	<b>Date and time of booking:</b> <%=request.getAttribute("datetime") %><br> 
+        <input type="button" id="end"value="End Ride" class="btn btn-info btn-lg" onclick="onEndRide()"><br>
+        <b>Ride Estimate:</b><input id="fare" type="text" >
         	
 				</form>
 				</td>
@@ -147,24 +146,23 @@ function GetRoute() {
             var dvDistance = document.getElementById("dvDistance");
 			
             dvDistance.innerHTML = "";
-            
-			dvDistance.innerHTML += "<b>Ride estimate:</b> Rs." + rideEstimate + "/-";
+        
+			document.getElementById('fare').value = rideEstimate;
  
         } else {
             alert("Unable to find the distance via road.");
         }
     });
 }
-function Controller() {
-	window.location.reload();
+function onEndRide() {
+var myVar = setInterval(checkBookingStatus,5000);
+
+function checkBookingStatus() {
+		out.println("hello");
+		xhttp.open("GET","CheckForEnd.jsp",true);
+		xhttp.send();
 }
-
-var accept = document.getElementById("accept");
-var decline = document.getElementById("decline");
-
-document.getElementById("accept").onclick = function () {
-    location.href = "drivermaps.jsp";
-};
+}
 </script>
 </body>
 </html>

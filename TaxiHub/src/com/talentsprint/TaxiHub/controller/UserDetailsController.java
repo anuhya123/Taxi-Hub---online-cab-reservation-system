@@ -31,6 +31,8 @@ public class UserDetailsController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String button = request.getParameter("button");
 		String registration = (String) request.getSession(false).getAttribute("registration");
+		String phone_num = (String) request.getSession(false).getAttribute("number");
+		
 		request.setAttribute("registration", registration);
 		ArrayList<BookingModel> details = new ArrayList<BookingModel>();
 		UserDetailsDAO udao = new UserDetailsDAO();
@@ -57,13 +59,12 @@ public class UserDetailsController extends HttpServlet {
 			rd.forward(request, response);
 			if(button.equals("Accept")) {
 				String result = udao.resetStatus(registration);
-				if (result == "END OF RIDE!") {
-					out.println("okay");
-				}
+				//udao.retrieveCabDriver(phone_num);
 			}
-			
-			
-			
+			if(button.equals("end")) {
+				String result = udao.resetStatus(registration);
+				//udao.retrieveCabDriver(phone_num);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -115,9 +115,10 @@ public class UserDetailsDAO {
 	public ArrayList<BookingModel> displayDetails(String registration) throws SQLException {
 		//List dataList = new ArrayList(); 
 		ArrayList<BookingModel> dataList = new ArrayList<BookingModel>();
-		String sql = "select phone_num,source,destination,date_time from bookings where registration_num = ?";
+		String sql = "select phone_num,source,destination,date_time from bookings where registration_num = ? and booking_status=?";
 		PreparedStatement pstat = conn.prepareStatement(sql);
 		pstat.setString(1, registration);
+		pstat.setString(2, "waiting");
 		ResultSet rs = pstat.executeQuery();
 		/*ResultSetMetaData rsmd = rs.getMetaData();
 		int columns = rsmd.getColumnCount();*/
@@ -136,6 +137,12 @@ public class UserDetailsDAO {
 	public String resetStatus(String registration) throws SQLException {
 		//boolean update = false;
 		System.out.println(registration);
+		String sql1 = "update bookings set booking_status = ? where registration_num = ?";
+		PreparedStatement pstatement = conn.prepareStatement(sql1);
+		pstatement.setString(1, "accepted");
+		pstatement.setString(2, registration);
+		int j= pstatement.executeUpdate();
+		
 		String sql = "update vehicle set status = ? where registration_num = ?";
 		PreparedStatement statement = conn.prepareStatement(sql);
 		statement.setString(1, "accepted");
@@ -151,7 +158,23 @@ public class UserDetailsDAO {
 				return("END OF RIDE!");
 			}
 		}
-		//System.out.println(update);
-		return "";		
+		//System.out.println(update);	
+		return " ";
 	}
+	
+	
+	public String retrieveCabDriver(String contact) throws SQLException {
+		String driver = null;
+		String sql =  "select driver_name from driver where registration_num in (select registration_num from bookings where booking_status = ? and phone_num = ? and cost_per_km = 6)";
+		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setString(1, "accepted");
+		statement.setString(2, contact);
+		ResultSet resultSet = statement.executeQuery();
+		if(resultSet.next()) {
+			driver = resultSet.getString(1);
+		}
+		System.out.println(driver);
+		return driver;
+	}
+	
 }

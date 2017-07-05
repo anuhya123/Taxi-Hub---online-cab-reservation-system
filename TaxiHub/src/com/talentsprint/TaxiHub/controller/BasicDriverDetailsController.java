@@ -3,6 +3,7 @@ package com.talentsprint.TaxiHub.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.talentsprint.TaxiHub.dao.DriverDetailsBasicDAO;
+import com.talentsprint.TaxiHub.model.BookingModel;
+import com.talentsprint.TaxiHub.model.DriverModel;
 
 @WebServlet("/BasicDriverDetailsController")
 public class BasicDriverDetailsController extends HttpServlet {
@@ -28,8 +31,9 @@ public class BasicDriverDetailsController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String status = "available";
+		String status = "accepted";
 		PrintWriter out = response.getWriter();
+		String button = request.getParameter("button");
 		String phone_num = (String) request.getSession(false).getAttribute("number");
 		String source = request.getParameter("source");
 		String destination = request.getParameter("destination");
@@ -38,21 +42,26 @@ public class BasicDriverDetailsController extends HttpServlet {
 		try {
 			//String email = dedao.getDriverEmailBasic(status);
 			String result = dedao.bookRide(phone_num,source,destination);
-			/*String driver = dedao.retrieveCabDriver(status);
-			String phone = dedao.retrieveDriverPhone(status);*/
-			String cabNumber = dedao.retrieveCabNumber(status);
+			//String driver = dedao.retrieveCabDriver(phone_num,status);
+			//String phone = dedao.retrieveDriverPhone(status);
+			//String cabNumber = dedao.retrieveCabNumber(status);
 			/*int did = dedao.retrieveDriverId(status);
-			dedao.insertIntoBookings(phone_num,did,cabNumber,source,destination);
 			//String cabName = dedao.retrieveCabName(status);
 			//System.out.println(email);
 			//request.setAttribute("email", email);
-			request.setAttribute("driver", driver);
+			
 			request.setAttribute("phone", phone);*/
-			request.setAttribute("phone_num",phone_num);
-			request.setAttribute("cabNumber", cabNumber);
+			//request.setAttribute("driver", driver);
+			//request.setAttribute("cabNumber", cabNumber);
 			request.setAttribute("result", result);
 			RequestDispatcher rd = request.getRequestDispatcher("basic.jsp");
 		    rd.forward(request, response);
+		    /*if (button.equals("proceed")) {
+		    	ArrayList<DriverModel> driverdetails = new ArrayList<DriverModel>();
+		    	driverdetails = dedao.displayDriverDetails(phone_num);
+		    	request.setAttribute("driverdetails", driverdetails);
+		    	
+		    }*/
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
